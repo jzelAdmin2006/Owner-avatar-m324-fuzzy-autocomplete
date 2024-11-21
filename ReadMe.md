@@ -35,3 +35,10 @@ curl --request GET http://localhost:8080/search/[query for searching by name]
 ```sh
 curl --request GET http://localhost:8080/search/Naim
 ```
+
+### Run frontend
+Create an .env file inside the root of the vue application
+
+```sh
+VITE_BACKEND_API_URL = "http://localhost:8080"
+```
