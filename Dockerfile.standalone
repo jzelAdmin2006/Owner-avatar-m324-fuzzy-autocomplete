@@ -1,0 +1,18 @@
+# syntax = edrevo/dockerfile-plus:0.1
+
+# Build
+FROM gradle:jdk21 AS build
+WORKDIR /app
+
+COPY gradlew .
+COPY gradle gradle/
+RUN chmod +x ./gradlew
+RUN ./gradlew --version
+
+COPY . /app
+RUN chmod +x ./gradlew
+RUN ./gradlew bootJar
+
+# Runtime
+INCLUDE+ Dockerfile.base
+COPY --from=build /app/build/libs/app.jar .
